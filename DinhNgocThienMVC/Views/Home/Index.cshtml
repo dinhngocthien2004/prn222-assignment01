@@ -1,8 +1,61 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<Repositories.Models.NewsArticle>
+
+@{
+    ViewData["Title"] = "News Articles";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center mb-4">
+    <h1 class="display-4">News Articles</h1>
+    <p>Browse all active news articles</p>
 </div>
+
+@if (Model != null && Model.Any())
+{
+    <div class="row">
+        @foreach (var article in Model)
+        {
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@article.Headline</h5>
+                        @if (!string.IsNullOrEmpty(article.NewsTitle))
+                        {
+                            <h6 class="card-subtitle mb-2 text-muted">@article.NewsTitle</h6>
+                        }
+                        <p class="card-text">
+                            @if (!string.IsNullOrEmpty(article.NewsContent))
+                            {
+                                @(article.NewsContent.Length > 150 ? article.NewsContent.Substring(0, 150) + "..." : article.NewsContent)
+                            }
+                        </p>
+                        <div class="mb-2">
+                            @if (article.Category != null)
+                            {
+                                <span class="badge bg-primary">@article.Category.CategoryName</span>
+                            }
+                            @foreach (var tag in article.NewsTags)
+                            {
+                                <span class="badge bg-secondary">@tag.Tag.TagName</span>
+                            }
+                        </div>
+                        <small class="text-muted">
+                            @if (article.CreatedDate.HasValue)
+                            {
+                                @article.CreatedDate.Value.ToString("MMM dd, yyyy")
+                            }
+                        </small>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-action="Details" asp-route-id="@article.NewsArticleID" class="btn btn-sm btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="alert alert-info">
+        <p>No active news articles available at the moment.</p>
+    </div>
+}

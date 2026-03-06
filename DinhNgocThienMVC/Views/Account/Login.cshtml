@@ -1,0 +1,178 @@
+﻿@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FU News Management System</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <style>
+        /* ========== Hiệu ứng nền gradient chuyển động ========== */
+        body {
+            background: linear-gradient(270deg, #1e90ff, #6a11cb, #00c6ff);
+            background-size: 600% 600%;
+            animation: gradientShift 8s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        @@keyframes gradientShift {
+            0%
+
+        {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+
+        }
+
+        /* ========== Container login ========== */
+        .login-container {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        /* ========== Card hiệu ứng nổi & mờ kính ========== */
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-in-out, floatUp 3s ease-in-out infinite alternate;
+            color: white;
+        }
+
+        @@keyframes fadeIn {
+            from
+
+        {
+            opacity: 0;
+            transform: translateY(-15px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        }
+
+        @@keyframes floatUp {
+            from
+
+        {
+            transform: translateY(0);
+        }
+
+        to {
+            transform: translateY(-10px);
+        }
+
+        }
+
+        /* ========== Header của form ========== */
+        .card-header {
+            background: linear-gradient(90deg, #007bff, #00c6ff);
+            border-bottom: none;
+            padding: 20px;
+            text-align: center;
+        }
+
+            .card-header h3 {
+                color: #fff;
+                font-weight: 600;
+                margin-bottom: 5px;
+            }
+
+            .card-header p {
+                color: #e0e0e0;
+                font-size: 14px;
+                margin: 0;
+            }
+
+        /* ========== Form và input ========== */
+        .form-label {
+            font-weight: 500;
+            color: white;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 10px 12px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* ========== Nút Login có hiệu ứng sáng ========== */
+        .btn-primary {
+            background: linear-gradient(90deg, #007bff, #00c6ff);
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 0 rgba(0, 198, 255, 0);
+        }
+
+            .btn-primary:hover {
+                background: linear-gradient(90deg, #0056b3, #0096ff);
+                transform: translateY(-3px);
+                box-shadow: 0 0 15px rgba(0, 198, 255, 0.7);
+            }
+
+        /* ========== Alert (thông báo lỗi) ========== */
+        .alert {
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="card">
+            <div class="card-header text-center">
+                <h3>FU News Management System</h3>
+                <p>Student Project - PRN222</p>
+            </div>
+            <div class="card-body">
+                @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                {
+                    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+                }
+
+                <form method="post" asp-action="Login">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required />
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

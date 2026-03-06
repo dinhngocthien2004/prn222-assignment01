@@ -1,6 +1,6 @@
 using System.Diagnostics;
-using DinhNgocThienMVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using Repositories.Models;
 
 namespace DinhNgocThienMVC.Controllers
 {
