@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Documents\\1_PRN222\\A01\\DinhNgocThien_SE18D.NET_A01\\DinhNgocThienMVC\\DinhNgocThienMVC.csproj": {}
+    "C:\\Users\\User\\Documents\\1_PRN222\\Assignment01\\DinhNgocThien_SE18D.NET_A01\\prn222-assignment01\\DinhNgocThienMVC\\DinhNgocThienMVC.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Documents\\1_PRN222\\A01\\DinhNgocThien_SE18D.NET_A01\\DinhNgocThienMVC\\DinhNgocThienMVC.csproj": {
+    "C:\\Users\\User\\Documents\\1_PRN222\\Assignment01\\DinhNgocThien_SE18D.NET_A01\\prn222-assignment01\\DinhNgocThienMVC\\DinhNgocThienMVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Documents\\1_PRN222\\A01\\DinhNgocThien_SE18D.NET_A01\\DinhNgocThienMVC\\DinhNgocThienMVC.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Documents\\1_PRN222\\Assignment01\\DinhNgocThien_SE18D.NET_A01\\prn222-assignment01\\DinhNgocThienMVC\\DinhNgocThienMVC.csproj",
         "projectName": "DinhNgocThienMVC",
-        "projectPath": "C:\\Users\\User\\Documents\\1_PRN222\\A01\\DinhNgocThien_SE18D.NET_A01\\DinhNgocThienMVC\\DinhNgocThienMVC.csproj",
+        "projectPath": "C:\\Users\\User\\Documents\\1_PRN222\\Assignment01\\DinhNgocThien_SE18D.NET_A01\\prn222-assignment01\\DinhNgocThienMVC\\DinhNgocThienMVC.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Documents\\1_PRN222\\A01\\DinhNgocThien_SE18D.NET_A01\\DinhNgocThienMVC\\obj\\",
+        "outputPath": "C:\\Users\\User\\Documents\\1_PRN222\\Assignment01\\DinhNgocThien_SE18D.NET_A01\\prn222-assignment01\\DinhNgocThienMVC\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\User\\Documents\\1_PRN222\\A01\\DinhNgocThien_SE18D.NET_A01\\Services\\Services.csproj": {
-                "projectPath": "C:\\Users\\User\\Documents\\1_PRN222\\A01\\DinhNgocThien_SE18D.NET_A01\\Services\\Services.csproj"
+              "C:\\Users\\User\\Documents\\1_PRN222\\Assignment01\\DinhNgocThien_SE18D.NET_A01\\prn222-assignment01\\Services\\Services.csproj": {
+                "projectPath": "C:\\Users\\User\\Documents\\1_PRN222\\Assignment01\\DinhNgocThien_SE18D.NET_A01\\prn222-assignment01\\Services\\Services.csproj"
               }
             }
           }
@@ -75,19 +75,19 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.24, 8.0.24]"
+              "version": "[8.0.25, 8.0.25]"
             },
             {
               "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[8.0.24, 8.0.24]"
+              "version": "[8.0.25, 8.0.25]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.24, 8.0.24]"
+              "version": "[8.0.25, 8.0.25]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.24, 8.0.24]"
+              "version": "[8.0.25, 8.0.25]"
             }
           ],
           "frameworkReferences": {
@@ -98,18 +98,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.311/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\User\\Documents\\1_PRN222\\A01\\DinhNgocThien_SE18D.NET_A01\\Repositories\\Repositories.csproj": {
+    "C:\\Users\\User\\Documents\\1_PRN222\\Assignment01\\DinhNgocThien_SE18D.NET_A01\\prn222-assignment01\\Repositories\\Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Documents\\1_PRN222\\A01\\DinhNgocThien_SE18D.NET_A01\\Repositories\\Repositories.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Documents\\1_PRN222\\Assignment01\\DinhNgocThien_SE18D.NET_A01\\prn222-assignment01\\Repositories\\Repositories.csproj",
         "projectName": "Repositories",
-        "projectPath": "C:\\Users\\User\\Documents\\1_PRN222\\A01\\DinhNgocThien_SE18D.NET_A01\\Repositories\\Repositories.csproj",
+        "projectPath": "C:\\Users\\User\\Documents\\1_PRN222\\Assignment01\\DinhNgocThien_SE18D.NET_A01\\prn222-assignment01\\Repositories\\Repositories.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Documents\\1_PRN222\\A01\\DinhNgocThien_SE18D.NET_A01\\Repositories\\obj\\",
+        "outputPath": "C:\\Users\\User\\Documents\\1_PRN222\\Assignment01\\DinhNgocThien_SE18D.NET_A01\\prn222-assignment01\\Repositories\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -187,15 +187,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.24, 8.0.24]"
+              "version": "[8.0.25, 8.0.25]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.24, 8.0.24]"
+              "version": "[8.0.25, 8.0.25]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.24, 8.0.24]"
+              "version": "[8.0.25, 8.0.25]"
             }
           ],
           "frameworkReferences": {
@@ -203,18 +203,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.311/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\User\\Documents\\1_PRN222\\A01\\DinhNgocThien_SE18D.NET_A01\\Services\\Services.csproj": {
+    "C:\\Users\\User\\Documents\\1_PRN222\\Assignment01\\DinhNgocThien_SE18D.NET_A01\\prn222-assignment01\\Services\\Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Documents\\1_PRN222\\A01\\DinhNgocThien_SE18D.NET_A01\\Services\\Services.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Documents\\1_PRN222\\Assignment01\\DinhNgocThien_SE18D.NET_A01\\prn222-assignment01\\Services\\Services.csproj",
         "projectName": "Services",
-        "projectPath": "C:\\Users\\User\\Documents\\1_PRN222\\A01\\DinhNgocThien_SE18D.NET_A01\\Services\\Services.csproj",
+        "projectPath": "C:\\Users\\User\\Documents\\1_PRN222\\Assignment01\\DinhNgocThien_SE18D.NET_A01\\prn222-assignment01\\Services\\Services.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Documents\\1_PRN222\\A01\\DinhNgocThien_SE18D.NET_A01\\Services\\obj\\",
+        "outputPath": "C:\\Users\\User\\Documents\\1_PRN222\\Assignment01\\DinhNgocThien_SE18D.NET_A01\\prn222-assignment01\\Services\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -235,8 +235,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\User\\Documents\\1_PRN222\\A01\\DinhNgocThien_SE18D.NET_A01\\Repositories\\Repositories.csproj": {
-                "projectPath": "C:\\Users\\User\\Documents\\1_PRN222\\A01\\DinhNgocThien_SE18D.NET_A01\\Repositories\\Repositories.csproj"
+              "C:\\Users\\User\\Documents\\1_PRN222\\Assignment01\\DinhNgocThien_SE18D.NET_A01\\prn222-assignment01\\Repositories\\Repositories.csproj": {
+                "projectPath": "C:\\Users\\User\\Documents\\1_PRN222\\Assignment01\\DinhNgocThien_SE18D.NET_A01\\prn222-assignment01\\Repositories\\Repositories.csproj"
               }
             }
           }
@@ -270,15 +270,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.24, 8.0.24]"
+              "version": "[8.0.25, 8.0.25]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.24, 8.0.24]"
+              "version": "[8.0.25, 8.0.25]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.24, 8.0.24]"
+              "version": "[8.0.25, 8.0.25]"
             }
           ],
           "frameworkReferences": {
@@ -286,7 +286,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.311/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
