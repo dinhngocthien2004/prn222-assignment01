@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Repositories.Models;
@@ -5,6 +6,7 @@ using Services.Service;
 
 namespace DinhNgocThienMVC.Controllers
 {
+   
     public class NewsArticleController : Controller
     {
         private readonly INewsArticleService _newsArticleService;
@@ -40,25 +42,7 @@ namespace DinhNgocThienMVC.Controllers
             {
                 return RedirectToAction("AccessDenied", "Account");
             }
-
-            var userId = GetCurrentUserId();
-            if (!userId.HasValue)
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
-            var articles = _newsArticleService.GetNewsArticlesByCreator(userId.Value);
-
-            if (!string.IsNullOrEmpty(searchTerm))
-            {
-                articles = articles.Where(a =>
-                    a.NewsTitle != null && a.NewsTitle.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
-                    a.Headline.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
-                    a.NewsContent != null && a.NewsContent.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)
-                ).ToList();
-            }
-
-            ViewBag.SearchTerm = searchTerm;
+            var articles = _newsArticleService.GetAllNewsArticles();
             return View(articles);
         }
 

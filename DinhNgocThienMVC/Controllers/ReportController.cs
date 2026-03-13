@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.Service;
 
 namespace DinhNgocThienMVC.Controllers
 {
+    //[Authorize(Roles = "0")] // Admin only
     public class ReportController : Controller
     {
         private readonly INewsArticleService _newsArticleService;

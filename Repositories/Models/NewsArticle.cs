@@ -36,7 +36,7 @@ namespace Repositories.Models
         public short? CategoryID { get; set; }
 
         [Display(Name = "Status")]
-        public bool? NewsStatus { get; set; }
+        public bool NewsStatus { get; set; }
 
         [Display(Name = "Created By")]
         public short? CreatedByID { get; set; }

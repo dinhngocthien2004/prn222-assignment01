@@ -22,7 +22,7 @@ namespace Repositories.Models
         public short? ParentCategoryID { get; set; }
 
         [Display(Name = "Active Status")]
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
 
         // Navigation properties
         [ForeignKey("ParentCategoryID")]

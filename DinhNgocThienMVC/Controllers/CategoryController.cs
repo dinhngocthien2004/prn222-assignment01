@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Repositories.Models;
 using Services.Service;
 
 namespace DinhNgocThienMVC.Controllers
 {
+   
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;
