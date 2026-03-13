@@ -8,9 +8,8 @@
     <h1 class="display-4">News Articles</h1>
     <p>Browse all active news articles</p>
 </div>
-
-@if (Model != null && Model.Any())
-{
+ @if (Model != null && Model.Any()) 
+ { 
     <div class="row">
         @foreach (var article in Model)
         {

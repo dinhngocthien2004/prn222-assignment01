@@ -3,15 +3,6 @@ using Repositories.Repositories;
 
 namespace Services.Service
 {
-    public interface ISystemAccountService
-    {
-        List<SystemAccount> GetAllAccounts();
-        SystemAccount? GetAccountById(short id);
-        SystemAccount? Login(string email, string password);
-        void AddAccount(SystemAccount account);
-        void UpdateAccount(SystemAccount account);
-        void DeleteAccount(short id);
-    }
 
     public class SystemAccountService : ISystemAccountService
     {

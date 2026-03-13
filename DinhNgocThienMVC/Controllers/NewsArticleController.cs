@@ -1,196 +1,197 @@
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Repositories.Models;
-using Services.Service;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Rendering;
+    using Repositories.Models;
+    using Services.Service;
 
-namespace DinhNgocThienMVC.Controllers
-{
-   
-    public class NewsArticleController : Controller
+    namespace DinhNgocThienMVC.Controllers
     {
-        private readonly INewsArticleService _newsArticleService;
-        private readonly ICategoryService _categoryService;
-        private readonly ITagService _tagService;
-
-        public NewsArticleController(INewsArticleService newsArticleService, ICategoryService categoryService, ITagService tagService)
+   
+        public class NewsArticleController : Controller
         {
-            _newsArticleService = newsArticleService;
-            _categoryService = categoryService;
-            _tagService = tagService;
-        }
+            private readonly INewsArticleService _newsArticleService;
+            private readonly ICategoryService _categoryService;
+            private readonly ITagService _tagService;
 
-        private bool IsStaff()
-        {
-            var role = HttpContext.Session.GetString("UserRole");
-            return role == "1";
-        }
-
-        private short? GetCurrentUserId()
-        {
-            var userId = HttpContext.Session.GetString("UserId");
-            if (short.TryParse(userId, out short id))
+            public NewsArticleController(INewsArticleService newsArticleService, ICategoryService categoryService, ITagService tagService)
             {
-                return id;
-            }
-            return null;
-        }
-
-        public IActionResult Index(string searchTerm)
-        {
-            if (!IsStaff())
-            {
-                return RedirectToAction("AccessDenied", "Account");
-            }
-            var articles = _newsArticleService.GetAllNewsArticles();
-            return View(articles);
-        }
-
-        public IActionResult MyHistory()
-        {
-            if (!IsStaff())
-            {
-                return RedirectToAction("AccessDenied", "Account");
+                _newsArticleService = newsArticleService;
+                _categoryService = categoryService;
+                _tagService = tagService;
             }
 
-            var userId = GetCurrentUserId();
-            if (!userId.HasValue)
+            private bool IsStaff()
             {
-                return RedirectToAction("Login", "Account");
+                var role = HttpContext.Session.GetString("UserRole");
+                return role == "1";
             }
 
-            var articles = _newsArticleService.GetNewsArticlesByCreator(userId.Value);
-            return View(articles);
-        }
-
-        [HttpGet]
-        public IActionResult Create()
-        {
-            if (!IsStaff())
+            private short? GetCurrentUserId()
             {
-                return RedirectToAction("AccessDenied", "Account");
-            }
-
-            ViewBag.Categories = new SelectList(_categoryService.GetActiveCategories(), "CategoryID", "CategoryName");
-            ViewBag.Tags = _tagService.GetAllTags();
-            return PartialView("_CreateEditModal", new NewsArticle());
-        }
-
-        [HttpPost]
-        public IActionResult Create(NewsArticle article, List<int> selectedTags)
-        {
-            if (!IsStaff())
-            {
-                return RedirectToAction("AccessDenied", "Account");
-            }
-
-            var userId = GetCurrentUserId();
-            if (!userId.HasValue)
-            {
-                return Json(new { success = false, message = "User not logged in" });
-            }
-
-            if (ModelState.IsValid)
-            {
-                article.CreatedByID = userId.Value;
-                article.CreatedDate = DateTime.Now;
-                article.ModifiedDate = DateTime.Now;
-                
-                if (selectedTags == null || !selectedTags.Any())
+                var userId = HttpContext.Session.GetString("UserId");
+                if (short.TryParse(userId, out short id))
                 {
-                    selectedTags = new List<int>();
+                    return id;
+                }
+                return null;
+            }
+
+            public IActionResult Index(string searchTerm)
+            {
+                if (!IsStaff())
+                {
+                    return RedirectToAction("AccessDenied", "Account");
                 }
 
-                _newsArticleService.AddNewsArticle(article, selectedTags);
-                return Json(new { success = true });
+                var articles = _newsArticleService.GetAllNewsArticles();          
+            return View(articles);
             }
 
-            ViewBag.Categories = new SelectList(_categoryService.GetActiveCategories(), "CategoryID", "CategoryName");
-            ViewBag.Tags = _tagService.GetAllTags();
-            return PartialView("_CreateEditModal", article);
-        }
-
-        [HttpGet]
-        public IActionResult Edit(string id)
-        {
-            if (!IsStaff())
+            public IActionResult MyHistory()
             {
-                return RedirectToAction("AccessDenied", "Account");
-            }
-
-            var article = _newsArticleService.GetNewsArticleById(id);
-            if (article == null)
-            {
-                return NotFound();
-            }
-
-            ViewBag.Categories = new SelectList(_categoryService.GetActiveCategories(), "CategoryID", "CategoryName", article.CategoryID);
-            ViewBag.Tags = _tagService.GetAllTags();
-            ViewBag.SelectedTags = article.NewsTags.Select(nt => nt.TagID).ToList();
-            return PartialView("_CreateEditModal", article);
-        }
-
-        [HttpPost]
-        public IActionResult Edit(NewsArticle article, List<int> selectedTags)
-        {
-            if (!IsStaff())
-            {
-                return RedirectToAction("AccessDenied", "Account");
-            }
-
-            var userId = GetCurrentUserId();
-            if (!userId.HasValue)
-            {
-                return Json(new { success = false, message = "User not logged in" });
-            }
-
-            if (ModelState.IsValid)
-            {
-                article.UpdatedByID = userId.Value;
-                article.ModifiedDate = DateTime.Now;
-                
-                if (selectedTags == null || !selectedTags.Any())
+                if (!IsStaff())
                 {
-                    selectedTags = new List<int>();
+                    return RedirectToAction("AccessDenied", "Account");
                 }
 
-                _newsArticleService.UpdateNewsArticle(article, selectedTags);
-                return Json(new { success = true });
+                var userId = GetCurrentUserId();
+                if (!userId.HasValue)
+                {
+                    return RedirectToAction("Login", "Account");
+                }
+
+                var articles = _newsArticleService.GetNewsArticlesByCreator(userId.Value);
+                return View(articles);
             }
 
-            ViewBag.Categories = new SelectList(_categoryService.GetActiveCategories(), "CategoryID", "CategoryName", article.CategoryID);
-            ViewBag.Tags = _tagService.GetAllTags();
-            return PartialView("_CreateEditModal", article);
-        }
-
-        [HttpPost]
-        public IActionResult Delete(string id)
-        {
-            if (!IsStaff())
+            [HttpGet]
+            public IActionResult Create()
             {
-                return Json(new { success = false, message = "Access denied" });
+                if (!IsStaff())
+                {
+                    return RedirectToAction("AccessDenied", "Account");
+                }
+
+                ViewBag.Categories = new SelectList(_categoryService.GetActiveCategories(), "CategoryID", "CategoryName");
+                ViewBag.Tags = _tagService.GetAllTags();
+                return PartialView("_CreateEditModal", new NewsArticle());
             }
 
-            try
+            [HttpPost]
+            public IActionResult Create(NewsArticle article, List<int> selectedTags)
             {
-                _newsArticleService.DeleteNewsArticle(id);
-                return Json(new { success = true });
-            }
-            catch (Exception ex)
-            {
-                return Json(new { success = false, message = ex.Message });
-            }
-        }
+                if (!IsStaff())
+                {
+                    return RedirectToAction("AccessDenied", "Account");
+                }
 
-        public IActionResult Details(string id)
-        {
-            var article = _newsArticleService.GetNewsArticleById(id);
-            if (article == null)
-            {
-                return NotFound();
+                var userId = GetCurrentUserId();
+                if (!userId.HasValue)
+                {
+                    return Json(new { success = false, message = "User not logged in" });
+                }
+
+                if (ModelState.IsValid)
+                {
+                    article.CreatedByID = userId.Value;
+                    article.CreatedDate = DateTime.Now;
+                    article.ModifiedDate = DateTime.Now;
+                
+                    if (selectedTags == null || !selectedTags.Any())
+                    {
+                        selectedTags = new List<int>();
+                    }
+
+                    _newsArticleService.AddNewsArticle(article, selectedTags);
+                    return Json(new { success = true });
+                }
+
+                ViewBag.Categories = new SelectList(_categoryService.GetActiveCategories(), "CategoryID", "CategoryName");
+                ViewBag.Tags = _tagService.GetAllTags();
+                return PartialView("_CreateEditModal", article);
             }
 
-            return View(article);
+            [HttpGet]
+            public IActionResult Edit(string id)
+            {
+                if (!IsStaff())
+                {
+                    return RedirectToAction("AccessDenied", "Account");
+                }
+
+                var article = _newsArticleService.GetNewsArticleById(id);
+                if (article == null)
+                {
+                    return NotFound();
+                }
+
+                ViewBag.Categories = new SelectList(_categoryService.GetActiveCategories(), "CategoryID", "CategoryName", article.CategoryID);
+                ViewBag.Tags = _tagService.GetAllTags();
+                ViewBag.SelectedTags = article.NewsTags.Select(nt => nt.TagID).ToList();
+                return PartialView("_CreateEditModal", article);
+            }
+
+            [HttpPost]
+            public IActionResult Edit(NewsArticle article, List<int> selectedTags)
+            {
+                if (!IsStaff())
+                {
+                    return RedirectToAction("AccessDenied", "Account");
+                }
+
+                var userId = GetCurrentUserId();
+                if (!userId.HasValue)
+                {
+                    return Json(new { success = false, message = "User not logged in" });
+                }
+
+                if (ModelState.IsValid)
+                {
+                    article.UpdatedByID = userId.Value;
+                    article.ModifiedDate = DateTime.Now;
+                
+                    if (selectedTags == null || !selectedTags.Any())
+                    {
+                        selectedTags = new List<int>();
+                    }
+
+                    _newsArticleService.UpdateNewsArticle(article, selectedTags);
+                    return Json(new { success = true });
+                }
+
+                ViewBag.Categories = new SelectList(_categoryService.GetActiveCategories(), "CategoryID", "CategoryName", article.CategoryID);
+                ViewBag.Tags = _tagService.GetAllTags();
+                return PartialView("_CreateEditModal", article);
+            }
+
+            [HttpPost]
+            public IActionResult Delete(string id)
+            {
+                if (!IsStaff())
+                {
+                    return Json(new { success = false, message = "Access denied" });
+                }
+
+                try
+                {
+                    _newsArticleService.DeleteNewsArticle(id);
+                    return Json(new { success = true });
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, message = ex.Message });
+                }
+            }
+
+            public IActionResult Details(string id)
+            {
+                var article = _newsArticleService.GetNewsArticleById(id);
+                if (article == null)
+                {
+                    return NotFound();
+                }
+
+                return View(article);
+            }
         }
     }
-}

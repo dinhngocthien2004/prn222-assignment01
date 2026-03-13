@@ -1,35 +1,33 @@
+﻿using Microsoft.EntityFrameworkCore;
 using Repositories.Models;
 using Repositories.Repositories;
 
 namespace Services.Service
 {
-    public interface INewsArticleService
-    {
-        List<NewsArticle> GetAllNewsArticles();
-        List<NewsArticle> GetActiveNewsArticles();
-        List<NewsArticle> GetNewsArticlesByCreator(short creatorId);
-        List<NewsArticle> GetNewsArticlesByDateRange(DateTime startDate, DateTime endDate);
-        List<NewsArticle> SearchNewsArticles(string searchTerm);
-        NewsArticle? GetNewsArticleById(string id);
-        void AddNewsArticle(NewsArticle article, List<int> tagIds);
-        void UpdateNewsArticle(NewsArticle article, List<int> tagIds);
-        void DeleteNewsArticle(string id);
-    }
 
     public class NewsArticleService : INewsArticleService
     {
         private readonly INewsArticleRepository _articleRepository;
         private readonly INewsTagRepository _newsTagRepository;
+        private readonly FUNewsManagementContext _context;
 
-        public NewsArticleService(INewsArticleRepository articleRepository, INewsTagRepository newsTagRepository)
+
+        public NewsArticleService(INewsArticleRepository articleRepository, INewsTagRepository newsTagRepository, FUNewsManagementContext context)
         {
             _articleRepository = articleRepository;
             _newsTagRepository = newsTagRepository;
+            _context = context;
         }
 
         public List<NewsArticle> GetAllNewsArticles()
         {
-            return _articleRepository.GetAll();
+            return _context.NewsArticles
+          .Include(n => n.Category)
+          .Include(n => n.NewsTags)
+              .ThenInclude(nt => nt.Tag)
+          
+          .OrderByDescending(n => n.CreatedDate)
+          .ToList();
         }
 
         public List<NewsArticle> GetActiveNewsArticles()

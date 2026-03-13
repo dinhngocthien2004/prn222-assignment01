@@ -3,11 +3,6 @@ using Repositories.Repositories;
 
 namespace Services.Service
 {
-    public interface ITagService
-    {
-        List<Tag> GetAllTags();
-        Tag? GetTagById(int id);
-    }
 
     public class TagService : ITagService
     {
